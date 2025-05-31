@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import config from "../config";
 
 export default function InsertProduct() {
   const [product, setProduct] = useState({
@@ -49,7 +50,7 @@ export default function InsertProduct() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3001/api/insertproduct", {
+      const res = await fetch(config.endpoints.insertProduct, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,15 +58,15 @@ export default function InsertProduct() {
         body: JSON.stringify(product),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (response.status === 201) {
+      if (res.status === 201) {
         navigate("/products");
       } else {
         setError(data.error || "Failed to add product");
       }
-    } catch (err) {
-      console.error("Error adding product:", err);
+    } catch (error) {
+      console.error("Error adding product:", error);
       setError("Failed to add product");
     } finally {
       setLoading(false);
