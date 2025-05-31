@@ -1,4 +1,4 @@
-const BASE_URL = "https://ims-vddd.onrender.com";
+const BASE_URL = "https://ims-vddd.onrender.com/api";
 
 const config = {
   BASE_URL,
