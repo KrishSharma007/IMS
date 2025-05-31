@@ -35,7 +35,6 @@ router.post("/insertproduct", async (req, res) => {
 
     await addProduct.save();
     res.status(201).json(addProduct);
-    console.log("Product added:", addProduct);
   } catch (err) {
     console.error("Error adding product:", err);
     res.status(500).json({ error: "Failed to add product" });
@@ -46,7 +45,6 @@ router.post("/insertproduct", async (req, res) => {
 router.get("/products", async (req, res) => {
   try {
     const getProducts = await products.find({});
-    console.log(getProducts);
     res.status(201).json(getProducts);
   } catch (err) {
     console.log(err);
@@ -57,7 +55,6 @@ router.get("/products", async (req, res) => {
 router.get("/products/:id", async (req, res) => {
   try {
     const getProduct = await products.findById(req.params.id);
-    console.log(getProduct);
     res.status(201).json(getProduct);
   } catch (err) {
     console.log(err);
@@ -88,7 +85,6 @@ router.put("/updateproduct/:id", async (req, res) => {
       },
       { new: true }
     );
-    console.log("Data Updated");
     res.status(201).json(updateProducts);
   } catch (err) {
     console.log(err);
@@ -100,7 +96,6 @@ router.put("/updateproduct/:id", async (req, res) => {
 router.delete("/deleteproduct/:id", async (req, res) => {
   try {
     const deleteProduct = await products.findByIdAndDelete(req.params.id);
-    console.log("Data Deleted");
     res.status(201).json(deleteProduct);
   } catch (err) {
     console.log(err);
