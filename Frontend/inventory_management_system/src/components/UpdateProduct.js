@@ -37,7 +37,7 @@ export default function UpdateProduct() {
 
   const getProduct = async () => {
     try {
-      const res = await fetch(config.endpoints.updateProduct(id), {
+      const res = await fetch(`${config.BASE_URL}/products/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,13 @@ export default function UpdateProduct() {
       });
       const data = await res.json();
       if (res.status === 201) {
-        setProduct(data);
+        // Convert string numbers to actual numbers for form fields
+        setProduct({
+          ...data,
+          ProductPrice: Number(data.ProductPrice),
+          StockQuantity: Number(data.StockQuantity),
+          MinStockLevel: Number(data.MinStockLevel),
+        });
       } else {
         setError("Failed to fetch product details");
       }
@@ -56,12 +62,15 @@ export default function UpdateProduct() {
   };
 
   useEffect(() => {
-    getProduct();
+    if (id) {
+      getProduct();
+    }
   }, [id]);
 
   const updateProduct = async (e) => {
     e.preventDefault();
 
+    // Validate required fields
     if (
       !product.ProductName ||
       !product.ProductPrice ||
@@ -80,17 +89,24 @@ export default function UpdateProduct() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(product),
+        body: JSON.stringify({
+          ...product,
+          ProductPrice: Number(product.ProductPrice),
+          StockQuantity: Number(product.StockQuantity || 0),
+          MinStockLevel: Number(product.MinStockLevel || 5),
+        }),
       });
+
+      const data = await res.json();
 
       if (res.status === 201) {
         navigate("/products");
       } else {
-        setError("Failed to update product");
+        setError(data.error || "Failed to update product");
       }
     } catch (error) {
       console.error("Error updating product:", error);
-      setError("Failed to update product");
+      setError("Failed to update product. Please try again.");
     } finally {
       setLoading(false);
     }
