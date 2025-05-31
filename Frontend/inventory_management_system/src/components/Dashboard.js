@@ -7,6 +7,7 @@ import {
   FaStar,
   FaTags,
 } from "react-icons/fa";
+import config from "../config";
 // import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -23,9 +24,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboardStats = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/api/dashboard/stats"
-        );
+        const response = await axios.get(config.endpoints.dashboard);
         setStats(response.data);
         setLoading(false);
       } catch (error) {
