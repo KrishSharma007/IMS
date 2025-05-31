@@ -14,7 +14,7 @@ export default function Products() {
 
   const getProducts = async () => {
     try {
-      const res = await fetch(`${config.API_URL}/products`, {
+      const res = await fetch(config.endpoints.products, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function Products() {
 
   const deleteProduct = async (id) => {
     try {
-      const response = await fetch(`${config.API_URL}/deleteproduct/${id}`, {
+      const response = await fetch(config.endpoints.deleteProduct(id), {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
