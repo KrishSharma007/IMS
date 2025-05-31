@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
+import config from "../config";
 
 export default function UpdateProduct() {
   const [product, setProduct] = useState({
@@ -34,29 +35,27 @@ export default function UpdateProduct() {
     }));
   };
 
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await fetch(`http://localhost:3001/api/products/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const data = await res.json();
-
-        if (res.status === 201) {
-          setProduct(data);
-        } else {
-          setError("Failed to fetch product details");
-        }
-      } catch (err) {
-        console.error("Error fetching product:", err);
+  const getProduct = async () => {
+    try {
+      const res = await fetch(config.endpoints.updateProduct(id), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      if (res.status === 201) {
+        setProduct(data);
+      } else {
         setError("Failed to fetch product details");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      setError("Failed to fetch product details");
+    }
+  };
 
+  useEffect(() => {
     getProduct();
   }, [id]);
 
@@ -76,24 +75,21 @@ export default function UpdateProduct() {
     setError("");
 
     try {
-      const response = await fetch(
-        `http://localhost:3001/api/updateproduct/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(product),
-        }
-      );
+      const res = await fetch(config.endpoints.updateProduct(id), {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
 
-      if (response.status === 201) {
+      if (res.status === 201) {
         navigate("/products");
       } else {
         setError("Failed to update product");
       }
-    } catch (err) {
-      console.error("Error updating product:", err);
+    } catch (error) {
+      console.error("Error updating product:", error);
       setError("Failed to update product");
     } finally {
       setLoading(false);
