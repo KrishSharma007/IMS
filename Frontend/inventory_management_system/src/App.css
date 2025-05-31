@@ -1,0 +1,232 @@
+/* Global Styles */
+body {
+  background: #181a1b;
+  color: #f3f3f3;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+}
+
+.container,
+.container-fluid {
+  background: transparent;
+}
+
+.card {
+  background: #23272b;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+  border: none;
+  color: #f3f3f3;
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.navbar {
+  background: #23272b !important;
+  border-bottom: 1px solid #222;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .navbar-brand {
+  color: #00bcd4 !important;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+}
+.navbar .nav-link {
+  color: #f3f3f3 !important;
+  margin-right: 1rem;
+  transition: color 0.2s;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #00bcd4 !important;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #00bcd4 0%, #23272b 100%) !important;
+}
+.bg-gradient-success {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+}
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%) !important;
+  color: #23272b !important;
+}
+.bg-gradient-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.stat-card {
+  min-height: 180px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-group-item {
+  background: #23272b;
+  color: #f3f3f3;
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23272b;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.btn,
+.btn-primary,
+.btn-success {
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
+  font-weight: 700;
+}
+
+a {
+  color: #00bcd4;
+  text-decoration: none;
+}
+a:hover {
+  color: #43e97b;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .stat-card {
+    min-height: 120px;
+  }
+  .navbar .navbar-brand {
+    font-size: 1.1rem;
+  }
+}
+
+/* Dashboard Styles */
+.dashboard .card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.dashboard .card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard .display-4 {
+  font-weight: 600;
+}
+
+/* About Page Styles */
+.about-section .card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-section .list-group-item {
+  border: none;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+}
+
+/* Products Page Styles */
+.products-table {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.products-table th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Form Styles */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #80bdff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard .card,
+.about-section .card,
+.products-table {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.add_button {
+  text-align: right;
+}
+
+.tr_color {
+  color: white;
+  background-color: #d83830;
+}
+
+/* Dark theme table styles */
+.table-dark {
+  background-color: #1a1d20;
+}
+
+.table-dark tbody tr:hover {
+  background-color: #2c3034 !important;
+  color: #ffffff !important;
+}
+
+.table-dark tbody tr:hover td,
+.table-dark tbody tr:hover th {
+  color: inherit !important;
+}
+
+.table-dark tbody tr:hover .text-success {
+  color: #28a745 !important;
+}
+
+.table-dark tbody tr:hover .text-info {
+  color: #17a2b8 !important;
+}
+
+.table-dark tbody tr:hover .text-muted {
+  color: #6c757d !important;
+}
